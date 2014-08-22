@@ -1,3 +1,24 @@
-<h3>Welcome!</h3>
+<%= provide(:title, 'welcome') %>
 
-<p>This is the Postit template. You've access the PostsController, index action. This is the index template. Find me under app/views/posts folder.</p>
+<% @post.each do |p| %>
+	<h5> POST: </h5>
+	<ul>
+		<p>creator: <%= p.creator.username %></p>
+		<p>title: <%= p.title %></p>
+		<p>description: <%= p.description %></p>
+	</ul>
+
+  <table>
+    <tr>
+      <th><%= link_to 'show this post:', post_path(p.id) %> / </th>
+      <th><%= link_to 'Edit this post:', edit_post_path(p.id) %> / </th>
+    </tr>
+  </table>
+
+  <p> -------- </p>
+
+<% end %>
+
+</br>
+
+<%= link_to 'create a new post:', new_post_path %>

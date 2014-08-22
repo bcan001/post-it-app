@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tealeaf Academy - Postit</title>
+    <title><%= full_title(yield(:title)) %></title>
     <meta name="description" content="">
     <meta name="author" content="">
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -33,5 +33,7 @@
         </footer>
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
+
+     <p><%= link_to 'go home', root_path %> / </p>
   </body>
 </html>

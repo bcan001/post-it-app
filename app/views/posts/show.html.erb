@@ -1,0 +1,11 @@
+<%= provide(:title, 'show') %>
+
+<p> you;re viewing <%= @post.title %></p>
+<p><%= @post.url %></p>
+<p><%= @post.description %></p>
+
+<table>
+     <tr>
+       <th><%= link_to 'edit this post', edit_post_path %> / </th>
+     </tr>
+</table>
