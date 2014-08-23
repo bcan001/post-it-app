@@ -23,5 +23,5 @@
 
 	<%= f.hidden_field :user_id, :value => @post.creator %>
 	
-	<%= f.submit 'submit', class: 'btn btn-primary' %>
+	<%= f.submit(@post.new_record? ? 'Create post' : 'Update Post', class: 'btn btn-primary' )%>
 <% end %>

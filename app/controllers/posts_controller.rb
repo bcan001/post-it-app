@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+  before_action :set_post, only: [:show, :edit, :update]
+
   # retrieve in CRUD
   def index
   	@post = Post.all
@@ -6,7 +9,7 @@ class PostsController < ApplicationController
   def show
   	# render so the view template has access to the instance variable
   	# once you establis params id you can then use .title, .desc, etc... in views (@posts.title)
-  	@post = Post.find(params[:id])
+  	#@post = Post.find(params[:id])
   	render :show
   end
 
@@ -28,10 +31,10 @@ class PostsController < ApplicationController
 
   # update in CRUD
   def edit
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
   end
   def update
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
 
     if @post.update(post_params)
       flash[:notice] = 'update successful'
@@ -52,4 +55,9 @@ class PostsController < ApplicationController
     def post_params
       params.require(:post).permit(:title, :url, :description)
     end
+
+    def set_post
+      @post = Post.find(params[:id])
+    end
+
 end

@@ -1,6 +1,7 @@
 <%= provide(:title, 'show') %>
+<%= render 'shared/content_title', title: 'selected post:' %>
 
-<p> you;re viewing <%= @post.title %></p>
+<p><%= @post.title %></p>
 <p><%= @post.url %></p>
 <p><%= @post.description %></p>
 

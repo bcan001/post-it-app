@@ -1,7 +1,7 @@
-<%= provide(:title, 'welcome') %>
-<%= render 'shared/content_title', title: 'welcome! here are the posts:' %>
+<%= provide(:title, "#{@category.name}") %>
+<%= render 'shared/content_title', title: "showing category: #{@category.name}" %>
 
-<% @post.each do |p| %>
+<% @category.posts.each do |p| %>
 	<ul>
 		<p>creator: <%= p.creator.username %></p>
 		<p>title: <%= p.title %></p>
@@ -16,9 +16,4 @@
   </table>
 
   <p> -------- </p>
-
 <% end %>
-
-</br>
-
-<%= link_to 'create a new post:', new_post_path %>
