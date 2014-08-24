@@ -1,22 +1,24 @@
 <%= provide(:title, 'welcome') %>
 <%= render 'shared/content_title', title: 'welcome! here are the posts:' %>
 
-<% @post.each do |p| %>
-	<ul>
-		<p>creator: <%= p.creator.username %></p>
-		<p>title: <%= p.title %></p>
-		<p>description: <%= p.description %></p>
-	</ul>
+<% @post.each do |post| %>
+	<div class='row'>
+    <div class='span8 well'>
+    <%= render post.categories %>
 
-  <table>
-    <tr>
-      <th><%= link_to 'show this post:', post_path(p.id) %> / </th>
-      <th><%= link_to 'Edit this post:', edit_post_path(p.id) %> / </th>
-    </tr>
-  </table>
-
-  <p> -------- </p>
-
+    <h4><%= link_to post.title, post.url %></h4>
+    <p><%= post.description %> </p>
+    <p>
+      <span class='quiet'>posted by</span> <%= post.creator.username %>
+      <small>at <%= post.created_at %></small>
+    </p>
+    <small>
+    <span>
+      <%= link_to("#{post.comments.size} comments. View Post:", post_path(post)) %>
+    </span>
+  </small>
+</div>
+</div>
 <% end %>
 
 </br>

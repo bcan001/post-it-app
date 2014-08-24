@@ -21,11 +21,12 @@ class PostsController < ApplicationController
     # initialize the article with its respective attributes
     @post = Post.new(post_params)
     @post.creator = User.first #change once we have authentication
+
     if @post.save
       flash[:notice] = 'your post was created'
       redirect_to posts_path
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -38,10 +39,10 @@ class PostsController < ApplicationController
 
     if @post.update(post_params)
       flash[:notice] = 'update successful'
-      redirect_to @post
+      redirect_to post_path(@post)
     else
       flash[:notice] = 'failure to update'
-      render 'edit'
+      render :edit
     end
   end
 
@@ -52,12 +53,12 @@ class PostsController < ApplicationController
   # security so hackers can't change info passed to system (see above for method use)
   # what schemas you are allowing the post to update in the database (do not want to update the foreign key, for instance)
   private
-    def post_params
-      params.require(:post).permit(:title, :url, :description)
-    end
+  def post_params
+    params.require(:post).permit(:title, :url, :description, category_ids: [])
+  end
 
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
 end
