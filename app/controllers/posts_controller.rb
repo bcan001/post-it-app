@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
 
   before_action :set_post, only: [:show, :edit, :update]
+  # so people not logged in can't access and edit posts and comments
+  before_action :require_user, except: [:index, :show]
 
   # retrieve in CRUD
   def index
@@ -20,7 +22,7 @@ class PostsController < ApplicationController
   def create
     # initialize the article with its respective attributes
     @post = Post.new(post_params)
-    @post.creator = User.first #change once we have authentication
+    @post.creator = current_user #change once we have authentication
 
     if @post.save
       flash[:notice] = 'your post was created'
@@ -36,7 +38,6 @@ class PostsController < ApplicationController
   end
   def update
     #@post = Post.find(params[:id])
-
     if @post.update(post_params)
       flash[:notice] = 'update successful'
       redirect_to post_path(@post)

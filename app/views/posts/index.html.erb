@@ -6,21 +6,20 @@
     <div class='span8 well'>
     <%= render post.categories %>
 
-    <h4><%= link_to post.title, post.url %></h4>
+    <h4><%= link_to post.url, fix_url(post.url) %></h4>
+    <h4><%= post.title %></h4>
     <p><%= post.description %> </p>
     <p>
       <span class='quiet'>posted by</span> <%= post.creator.username %>
-      <small>at <%= post.created_at %></small>
+      <small>at <%= display_datetime(post.created_at) %></small>
     </p>
     <small>
     <span>
-      <%= link_to("#{post.comments.size} comments. View Post:", post_path(post)) %>
+      
+      <%= link_to("#{post.comments.size} comments", post_path(post)) %>
+
     </span>
   </small>
 </div>
 </div>
 <% end %>
-
-</br>
-
-<%= link_to 'create a new post:', new_post_path %>
