@@ -2,33 +2,26 @@
 <%= render 'shared/content_title', title: 'welcome! here are the posts:' %>
 
 <% @post.each do |post| %>
+  <% if logged_in? == true %>
   <div class='span0 well text-center'> 
-    <%= link_to vote_post_path(post), method: 'post' do %>
+    <!--Makes the vote post path into a POST (there is a form built into the javascript) -->
+    <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
       <i class='icon-arrow-up'></i>
     <% end %>
     <br/>
-    <%= link_to '' do %>
+    <%= post.total_votes %>
+    <br/>
+    <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
       <i class='icon-arrow-down'></i>
     <% end %>
   </div>
-	<div class='row'>
-    <div class='span8 well'>
-    <%= render post.categories %>
 
-    <h4><%= link_to post.url, fix_url(post.url) %></h4>
-    <h4><%= post.title %></h4>
-    <p><%= post.description %> </p>
-    <p>
-      <span class='quiet'>posted by</span> <%= post.creator.username %>
-      <small>at <%= display_datetime(post.created_at) %></small>
-    </p>
-    <small>
-    <span>
-      
-      <%= link_to("#{post.comments.size} comments", post_path(post)) %>
+  <%= render "posts/post", post: post, show_post: true %>
+ 
+ <% else %>
 
-    </span>
-  </small>
-</div>
-</div>
+ <%= render "posts/post", post: post, show_post: true %>
+
+ <% end %>
+
 <% end %>

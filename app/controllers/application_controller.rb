@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   def current_user
   	# if there's authenticated user, return the user obj
   	# else return nil
-  	User.find(session[:user_id]) if session[:user_id]
+  	@current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
   # see helper method above as well as navbar view for login use

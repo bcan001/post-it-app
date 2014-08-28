@@ -18,7 +18,20 @@ class UsersController < ApplicationController
 	end
 
 	def update
+		@user = User.find(params[:id])
+		if @user.update(user_params)
+      flash[:notice] = 'update successful'
+      redirect_to root_path(@user)
+    else
+      flash[:notice] = 'failure to update'
+      render :edit
+    end
 	end
+
+	def show
+		@user = User.find(params[:id])
+	end
+
 
 	private
 	def user_params

@@ -14,7 +14,9 @@
 <p>----------------------</p>
 
 <p>comments:</p>
-<%= render "comments/comment" %>
+<% @post.comments.each do |comment| %>
+	<%= render "comments/comment", comment: comment, show_post: false %>
+<% end %>
 
 <p>----------------------</p>
 

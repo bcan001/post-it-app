@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
 
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :vote]
   # so people not logged in can't access and edit posts and comments
   before_action :require_user, except: [:index, :show]
 
   # retrieve in CRUD
   def index
-  	@post = Post.all
+  	@post = Post.all.sort_by{|x| x.total_votes}.reverse
   end
   def show
   	# render so the view template has access to the instance variable
@@ -49,6 +49,21 @@ class PostsController < ApplicationController
 
   # delete in CRUD
   def destroy
+  end
+
+  def vote
+    # a vote needs to get added to the votes db table
+    # needs to specify vote(t or f) user_id, the voteable_type, the voteable_id
+  
+    @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
+ 
+    if @vote.valid?
+        flash[:notice] = 'your vote was counted.'
+        redirect_to :back
+    else
+        flash[:error] = 'your vote was not counted, you can only vote once on each comment'
+        redirect_to :back
+    end
   end
 
   # security so hackers can't change info passed to system (see above for method use)
