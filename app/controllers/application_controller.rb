@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   	# if there's authenticated user, return the user obj
   	# else return nil
   	@current_user ||= User.find(session[:user_id]) if session[:user_id]
+    rescue ActiveRecord::RecordNotFound
   end
 
   # see helper method above as well as navbar view for login use
