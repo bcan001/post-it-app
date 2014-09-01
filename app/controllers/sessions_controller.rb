@@ -13,17 +13,17 @@ class SessionsController < ApplicationController
 		if user && user.authenticate(params[:password])
 			# if the login is correct, will create a session hash
 			session[:user_id] = user.id
-			flash[:notice] = 'you\'ve logged in!'
+			flash[:notice] = 'You\'ve logged in!'
 			redirect_to root_path
 		else
-			flash[:error] = 'there\'s something wrong with your password'
+			flash[:error] = 'There\'s something wrong with your password'
 			redirect_to register_path
 		end
 	end
 
 	def destroy
 		session[:user_id] = nil
-		flash[:notice] = 'you\'ve logged out!'
+		flash[:notice] = 'You\'ve logged out!'
 		redirect_to root_path
 	end
 end

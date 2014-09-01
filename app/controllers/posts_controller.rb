@@ -12,6 +12,7 @@ class PostsController < ApplicationController
   	# render so the view template has access to the instance variable
   	# once you establis params id you can then use .title, .desc, etc... in views (@posts.title)
   	#@post = Post.find(params[:id])
+  
   	render :show
   end
 
@@ -57,12 +58,17 @@ class PostsController < ApplicationController
   
     @vote = Vote.create(voteable: @post, creator: current_user, vote: params[:vote])
  
-    if @vote.valid?
-        flash[:notice] = 'your vote was counted.'
+    # if the vote is valid, then the prompt will be HTML. If the vote is invalid, the prompt will be JS
+    respond_to do |format|
+      format.html do
+        if @vote.valid?
+          flash[:notice] = 'Your vote was counted.'
+        else
+          flash[:error] = 'Your vote was not counted, you can only vote once on each post'
+        end
         redirect_to :back
-    else
-        flash[:error] = 'your vote was not counted, you can only vote once on each comment'
-        redirect_to :back
+      end
+      format.js
     end
   end
 
@@ -74,7 +80,9 @@ class PostsController < ApplicationController
   end
 
   def set_post
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
+    # because it's now a slug, change to:
+    @post = Post.find_by slug: params[:id]
   end
 
 end

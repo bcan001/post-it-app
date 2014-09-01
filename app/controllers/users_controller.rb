@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 	def create
 		@user = User.new(user_params)
 		if @user.save
-			flash[:notice] = 'You are registered'
+			flash[:notice] = 'You are registered for the site!'
 			redirect_to root_path
 		else
 			render :new
@@ -20,17 +20,18 @@ class UsersController < ApplicationController
 	def update
 		@user = User.find(params[:id])
 		if @user.update(user_params)
-      flash[:notice] = 'update successful'
+      flash[:notice] = 'Update Successful!'
       redirect_to root_path(@user)
     else
-      flash[:notice] = 'failure to update'
+      flash[:notice] = 'Failure to update, please enter correct paramaters'
       render :edit
     end
 	end
 
 	def show
-		@user = User.find(params[:id])
+		@user = User.find_by slug: params[:id]
 	end
+
 
 
 	private

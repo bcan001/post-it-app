@@ -1,28 +1,29 @@
-<%= provide(:title, 'show') %>
-<%= render 'shared/content_title', title: 'selected post:' %>
+<%= provide(:title, "#{@post.title}") %>
+<%= render 'shared/content_title', title: 'Selected post:' %>
 
-<p><%= @post.title %></p>
+<div class='well'>
+<h4><%= @post.title %></h4>
 <p><%= @post.url %></p>
 <p><%= @post.description %></p>
 
 <table>
-     <tr>
-       <th><%= link_to 'edit this post', edit_post_path %> / </th>
-     </tr>
+  <tr>
+    <th><%= link_to 'Edit this post:', edit_post_path %> / </th>
+  </tr>
 </table>
+</div>
 
-<p>----------------------</p>
 
-<p>comments:</p>
-<% @post.comments.each do |comment| %>
+<h5>Comments:</h5>
+<!-- .reload for slug -->
+<% @post.reload.comments.sort_by{|x| x.total_votes}.reverse.each do |comment| %>
 	<%= render "comments/comment", comment: comment, show_post: false %>
 <% end %>
 
-<p>----------------------</p>
 
-<p>Add a comment:</p>
+<div class='well pull-left'>
 <%= render "comments/form" %>
-
+</div>
 
 
 

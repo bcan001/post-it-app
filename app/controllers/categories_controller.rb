@@ -8,7 +8,7 @@ class CategoriesController < ApplicationController
 	def create
 		@category = Category.new(category_params)
 		if @category.save
-			flash[:notice] = 'category has been created'
+			flash[:notice] = 'Category has been created'
 			redirect_to root_path
 		else
 			render :new
@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
 	end
 
 	def show
-		@category = Category.find(params[:id])
+		@category = Category.find_by slug: params[:id]
 	end
 
 	# the only thing we want people to create is the 'name' of the category

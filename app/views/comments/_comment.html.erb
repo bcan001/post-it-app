@@ -9,3 +9,18 @@
 	<span class='quiet'>by</span> <%= link_to comment.creator.username, user_path(comment.creator) %>
 	<small> at <%= display_datetime(comment.created_at) %></small>
 </div>
+
+<% if logged_in? == true %>
+  <div class='span0 well text-center'> 
+    <!--Makes the vote post path into a POST (there is a form built into the javascript) -->
+    <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post', remote: true do %>
+      <i class='icon-arrow-up'></i>
+    <% end %>
+    <br/>
+    <span id='comment_<%= comment.id %>_votes'><%= comment.total_votes %> votes</span>
+    <br/>
+    <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post', remote: true do %>
+      <i class='icon-arrow-down'></i>
+    <% end %>
+  </div>
+<% end %>

@@ -4,7 +4,10 @@ class Vote < ActiveRecord::Base
 	# polymorphic association (looks for voteable_type and voteable_id)
 	belongs_to :voteable, polymorphic: true
 
+
 	# people can only vote once on a post
-	validates_uniqueness_of :creator, scope: :voteable
-	
+	# creator means only 1 user can vote only 1 time
+	# scope means the validation checks that the SAME user can't vote on the SAME object
+	validates_uniqueness_of :creator, scope: [:voteable_id, :voteable_type]
+
 end

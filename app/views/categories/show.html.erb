@@ -1,5 +1,5 @@
 <%= provide(:title, "#{@category.name}") %>
-<%= render 'shared/content_title', title: "showing category: #{@category.name}" %>
+<%= render 'shared/content_title', title: "Showing category: #{@category.name}" %>
 
 <% @category.posts.each do |post| %>
 	<div class='row'>
@@ -10,7 +10,7 @@
     <h4><%= post.title %></h4>
     <p><%= post.description %> </p>
     <p>
-      <span class='quiet'>posted by</span> <%= post.creator.username %>
+      <span class='quiet'>posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
       <small>at <%= display_datetime(post.created_at) %></small>
     </p>
     <small>
