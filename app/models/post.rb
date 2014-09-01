@@ -40,7 +40,7 @@ class Post < ActiveRecord::Base
 			post = Post.find_by slug: the_slug
 			count += 1
 		end
-		self.slug = str.downcase
+		self.slug = the_slug.downcase
 	end
 
 	def append_suffix(str, count)
