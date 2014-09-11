@@ -12,6 +12,10 @@ class SessionsController < ApplicationController
 		user = User.find_by(username: params[:username])
 		if user && user.authenticate(params[:password])
 			# if the login is correct, will create a session hash
+
+			# mixpanel tracks when a person logs in
+			mixpanel.track("Video play");
+
 			session[:user_id] = user.id
 			flash[:notice] = 'You\'ve logged in!'
 			redirect_to root_path
