@@ -16,6 +16,8 @@ gem 'bcrypt-ruby', '=3.0.1'
 
 gem 'voteable_ben'
 
+gem 'mixpanel-ruby'
+
 group :doc do
   gem 'sdoc', require: false
 end

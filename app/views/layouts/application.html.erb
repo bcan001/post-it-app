@@ -36,5 +36,10 @@
         </footer>
       </div> <!--! end of .container -->
     </div> <!--! end of #main -->
+
+    <% if Rails.env.production? %>
+      <%= render :partial => 'layouts/ga' %>
+    <%end%>
+
   </body>
 </html>
