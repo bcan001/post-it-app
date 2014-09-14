@@ -15,6 +15,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bcrypt-ruby', '=3.0.1'
 
 gem 'voteable_ben'
+gem 'sluggable_ben'
 
 gem 'mixpanel-ruby'
 
@@ -32,3 +33,11 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
+
+group :development, :test do
+  gem 'rspec-rails'
+
+  gem 'database_cleaner'
+	gem 'capybara'
+end
+

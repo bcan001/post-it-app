@@ -12,7 +12,13 @@
     <small>
     <span>
       
-      <%= link_to("#{post.comments.size} comments", post_path(post)) %>
+      <% if post.comments.size > 1 %>
+        <%= link_to "#{post.comments.size} Comments. Click to View Post", post_path(post) %>
+      <% elsif post.comments.size == 0 %>
+        <%= link_to "0 Comments. Click to View Post", post_path(post) %>
+      <% else %>
+        <%= link_to "#{post.comments.size} Comment. Click to View Post", post_path(post) %>
+      <% end %>
 
     </span>
   </small>

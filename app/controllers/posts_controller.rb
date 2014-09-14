@@ -3,10 +3,12 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :vote]
   # so people not logged in can't access and edit posts and comments
   before_action :require_user, except: [:index, :show]
+  before_action :require_creator, only: [:edit, :update]
 
   # retrieve in CRUD
   def index
   	@post = Post.all.sort_by{|x| x.total_votes}.reverse
+
   end
   def show
   	# render so the view template has access to the instance variable
@@ -85,4 +87,9 @@ class PostsController < ApplicationController
     @post = Post.find_by slug: params[:id]
   end
 
+  def require_creator
+    if current_user != @post.creator
+      access_denied unless logged_in? and (current_user == @post.creator || current_user.admin?)
+    end
+  end 
 end

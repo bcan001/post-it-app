@@ -1,5 +1,5 @@
 <%= provide(:title, 'Welcome') %>
-<%= render 'shared/content_title', title: 'Welcome! Here are the current posts:' %>
+<%= render 'shared/content_title', title: 'All Current Posts:' %>
 
 <% @post.each do |post| %>
   <% if logged_in? == true %>
@@ -15,6 +15,13 @@
     <%= link_to vote_post_path(post, vote: false), method: 'post', remote: true do %>
       <i class='icon-arrow-down'></i>
     <% end %>
+  
+
+  <% if (logged_in? == true && post.creator == current_user) || current_user.admin? %>
+      <br/>
+      <th><%= link_to 'Edit', edit_post_path(post) %> </th>
+  <% end %>
+
   </div>
 
 

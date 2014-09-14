@@ -1,5 +1,3 @@
-=begin
-
 module Sluggable
 	extend ActiveSupport::Concern
 
@@ -48,4 +46,3 @@ module Sluggable
 	end
 
 end
-=end

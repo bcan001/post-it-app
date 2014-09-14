@@ -8,6 +8,10 @@
 
 <h4><%= @user.username %>'s Activity: </h4>
 
+<h4>Time Zone: </h4>
+<h4><%= @user.time_zone %></h4>
+
+
 <ul class='nav nav-tabs'>
 	<li class='<%= 'active' if params[:tab].nil? %>' >
 		<%= link_to "Posts (#{@user.posts.size})", user_path(@user, tab: 'posts') %>
