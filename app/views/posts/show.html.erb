@@ -2,17 +2,17 @@
 <%= render 'shared/content_title', title: 'Selected post:' %>
 
 <div class='well'>
-<h4><%= @post.title %></h4>
-<p><%= @post.url %></p>
-<p><%= @post.description %></p>
+	<h4><%= @post.title %></h4>
+	<p><%= @post.url %></p>
+	<p><%= @post.description %></p>
 
-<% if (logged_in? == true && @post.creator == current_user) || current_user.admin? %>
-	<table>
-  	<tr>
-    	<th><%= link_to 'Edit', edit_post_path %> </th>
-  	</tr>
-	</table>
-<% end %>
+	<% if (logged_in? == true && @post.creator == current_user) || current_user.admin? %>
+		<table>
+	  	<tr>
+	    	<th><%= link_to 'Edit', edit_post_path %> </th>
+	  	</tr>
+		</table>
+	<% end %>
 </div>
 
 <h5>Comments:</h5>
@@ -23,7 +23,7 @@
 
 
 <div class='well pull-left'>
-<%= render "comments/form" %>
+	<%= render "comments/form" %>
 </div>
 
 

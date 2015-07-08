@@ -1,26 +1,17 @@
 <div class='row'>
-    <div class='span8 well'>
+  <div class='span8 well'>
     <%= render post.categories %>
-
     <h4><%= link_to post.url, fix_url(post.url) %></h4>
     <h4><%= post.title %></h4>
-    <p><%= post.description %> </p>
+    <p><%= post.description %></p>
     <p>
       <span class='quiet'>posted by</span> <%= link_to post.creator.username, user_path(post.creator) %>
       <small>at <%= display_datetime(post.created_at) %></small>
     </p>
     <small>
-    <span>
-      
-      <% if post.comments.size > 1 %>
-        <%= link_to "#{post.comments.size} Comments. Click to View Post", post_path(post) %>
-      <% elsif post.comments.size == 0 %>
-        <%= link_to "0 Comments. Click to View Post", post_path(post) %>
-      <% else %>
-        <%= link_to "#{post.comments.size} Comment. Click to View Post", post_path(post) %>
-      <% end %>
-
-    </span>
-  </small>
+      <span>
+     
+      </span>
+    </small>
   </div>
-  </div>
+</div>

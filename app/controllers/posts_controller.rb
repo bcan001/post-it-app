@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-
   before_action :set_post, only: [:show, :edit, :update, :vote]
   # so people not logged in can't access and edit posts and comments
   before_action :require_user, except: [:index, :show]
@@ -7,14 +6,12 @@ class PostsController < ApplicationController
 
   # retrieve in CRUD
   def index
-  	@post = Post.all.sort_by{|x| x.total_votes}.reverse
+  	# @post = Post.all.sort_by{|x| x.total_votes}.reverse
+    @post = Post.all
 
   end
   def show
-  	# render so the view template has access to the instance variable
-  	# once you establis params id you can then use .title, .desc, etc... in views (@posts.title)
-  	#@post = Post.find(params[:id])
-  
+  	# @post = Post.find(params[:id])
   	render :show
   end
 
@@ -35,10 +32,10 @@ class PostsController < ApplicationController
     end
   end
 
-  # update in CRUD
   def edit
     #@post = Post.find(params[:id])
   end
+
   def update
     #@post = Post.find(params[:id])
     if @post.update(post_params)
@@ -50,7 +47,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # delete in CRUD
   def destroy
   end
 
@@ -74,8 +70,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # security so hackers can't change info passed to system (see above for method use)
-  # what schemas you are allowing the post to update in the database (do not want to update the foreign key, for instance)
   private
   def post_params
     params.require(:post).permit(:title, :url, :description, category_ids: [])
@@ -83,7 +77,6 @@ class PostsController < ApplicationController
 
   def set_post
     #@post = Post.find(params[:id])
-    # because it's now a slug, change to:
     @post = Post.find_by slug: params[:id]
   end
 
