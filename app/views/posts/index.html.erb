@@ -3,10 +3,9 @@
 
 <% @post.each do |post| %>
   <% if logged_in? == true %>
-
-  <div class='span0 well text-center'> 
-    <!--Makes the vote post path into a POST (there is a form built into the javascript) -->
-    <%= link_to vote_post_path(post, vote: true), method: 'post', remote: true do %>
+    <div class='span0 well text-center'> 
+      <!--Makes the vote post path into a POST (there is a form built into the javascript) -->
+      <%= link_to vote_post_path(post, vote: true), method: 'post', remote: true do %>
       <i class='icon-arrow-up'></i>
     <% end %>
     <br/>
@@ -14,23 +13,14 @@
     <br/>
     <%= link_to vote_post_path(post, vote: false), method: 'post', remote: true do %>
       <i class='icon-arrow-down'></i>
-    <% end %>
-  
-
-  <% if (logged_in? == true && post.creator == current_user) || current_user.admin? %>
-      <br/>
-      <th><%= link_to 'Edit', edit_post_path(post) %> </th>
-  <% end %>
-
+<% end %>
+<% if (logged_in? == true && post.creator == current_user) || current_user.admin? %>
+    <br/>
+    <th><%= link_to 'Edit', edit_post_path(post) %> </th>
+<% end %>
   </div>
-
-
   <%= render "posts/post", post: post, show_post: true %>
- 
  <% else %>
-
  <%= render "posts/post", post: post, show_post: true %>
-
  <% end %>
-
 <% end %>

@@ -7,6 +7,8 @@ PostitTemplate::Application.routes.draw do
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
 
+  get '/about', to: 'users#about', as: 'about'
+
   #get '/posts', to: 'posts#index'
   #get '/posts/:id', to: 'posts#show'
   #get '/posts/new', to: 'posts#new'

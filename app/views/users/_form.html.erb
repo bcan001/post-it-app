@@ -7,15 +7,15 @@
 	<ul id='user_form'>
 	<li><%= f.label :username %></li>
 	<li><%= f.text_field :username %></li>
+	<li><%= f.label :email %></li>
+	<li><%= f.text_field :email %></li>
 	<li><%= f.label :password %></li>
 	<li><%= f.password_field :password %></li>
-
 	<li>
 		<li><%= f.label :time_zone %></li>
 		<li><%= f.time_zone_select :time_zone, ActiveSupport::TimeZone.us_zones, default: Time.zone.name %></li>
 	</li>
-
-	<li><%= f.submit @user.new_record? ? 'register' : 'update profile', class: 'btn btn-success'%></li>
+	<li><%= f.submit @user.new_record? ? 'Register' : 'update profile', class: 'btn btn-primary'%></li>
 	</ul>
 <% end %>
 </div>

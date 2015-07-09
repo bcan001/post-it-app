@@ -1,16 +1,19 @@
 <%= provide(:title, "#{@user.username}") %>
-<%= render 'shared/content_title', title: "Profile for: #{@user.username}" %>
+<%= render 'shared/content_title', title: "#{@user.username}" %>
 
+<div id="profile-pic">
+	<%= gravatar_image_tag(@user.email) %>
+</div>
+</br>
 
 <div class='well'>
-	<h4>Username: <%= @user.username %> </h4>
+	<h4>Username: <%= @user.username %></h4>
+	<h4>Time Zone: <%= @user.time_zone %></h4>
+	<h4>Number of Posts: <%= @user.posts.count %></h4>
+	<h4>Number of Comments: <%= @user.comments.count %></h4>
 </div>
 
-<h4><%= @user.username %>'s Activity: </h4>
-
-<h4>Time Zone: </h4>
-<h4><%= @user.time_zone %></h4>
-
+<h4><%= @user.username %>'s Website Posts: </h4>
 
 <ul class='nav nav-tabs'>
 	<li class='<%= 'active' if params[:tab].nil? %>' >
@@ -23,8 +26,6 @@
 
 <% if params[:tab].nil? ||  params[:tab] == 'posts'%>
 	<% @user.posts.sort_by{|x| x.total_votes}.reverse.each do |post| %>
-		
-
 		<div class='span0 well text-center'> 
     <!--Makes the vote post path into a POST (there is a form built into the javascript) -->
     <%= link_to vote_post_path(post, vote: true), method: 'post' do %>
@@ -37,9 +38,7 @@
       <i class='icon-arrow-down'></i>
     <% end %>
   </div>
-
   <%= render 'posts/post', post: post %>
-
 	<% end %>
 
 <% elsif params[:tab] == 'comments' %>
