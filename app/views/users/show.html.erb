@@ -1,17 +1,26 @@
-<%= provide(:title, "#{@user.username}") %>
-<%= render 'shared/content_title', title: "#{@user.username}" %>
+<div style="text-align:center;">
+	<%= render 'shared/content_title', title: 'Profile:' %>
+</div>
 
+<%= provide(:title, "#{@user.username}") %>
+
+</br>
 <div id="profile-pic">
 	<%= gravatar_image_tag(@user.email) %>
 </div>
 </br>
+<div style="text-align:center;">
+	<%= render 'shared/content_title', title: "#{@user.username}" %>
+</div>
 
 <div class='well'>
 	<h4>Username: <%= @user.username %></h4>
 	<h4>Time Zone: <%= @user.time_zone %></h4>
 	<h4>Number of Posts: <%= @user.posts.count %></h4>
 	<h4>Number of Comments: <%= @user.comments.count %></h4>
+	<h4><%= link_to 'Edit Profile', edit_user_path(current_user) %></h4>
 </div>
+
 
 <h4><%= @user.username %>'s Website Posts: </h4>
 

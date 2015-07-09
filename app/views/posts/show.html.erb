@@ -2,8 +2,8 @@
 <%= render 'shared/content_title', title: 'Selected post:' %>
 
 <div class='well'>
-	<h4><%= @post.title %></h4>
-	<p><%= @post.url %></p>
+	<h3><%= @post.title %></h3>
+	<h5><%= @post.url %></h5>
 	<p><%= @post.description %></p>
 
 	<% if (logged_in? == true && @post.creator == current_user) %>

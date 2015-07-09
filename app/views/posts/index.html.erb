@@ -1,6 +1,7 @@
 <%= provide(:title, 'Welcome') %>
-<%= render 'shared/content_title', title: 'All Current Posts:' %>
-
+<div style="text-align:center;">
+  <%= render 'shared/content_title', title: 'Post Feed:' %>
+</div>
 <% @post.each do |post| %>
   <% if logged_in? == true %>
     <div class='span0 well text-center'> 
