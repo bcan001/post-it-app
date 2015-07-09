@@ -6,7 +6,7 @@
 	<p><%= @post.url %></p>
 	<p><%= @post.description %></p>
 
-	<% if (logged_in? == true && @post.creator == current_user) || current_user.admin? %>
+	<% if (logged_in? == true && @post.creator == current_user) %>
 		<table>
 	  	<tr>
 	    	<th><%= link_to 'Edit', edit_post_path %> </th>
