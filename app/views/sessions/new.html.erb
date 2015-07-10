@@ -2,6 +2,9 @@
 	<%= render 'shared/content_title', title: 'Login:' %>
 </div>
 
+<h4>Please login to post and comment:</h4>
+</br>
+
 <!-- since there is no db for the 'session', this uses a non model backed form-->
 <div class='well'>
 	<%= form_tag '/login' do %>
@@ -15,6 +18,7 @@
 		</div>
 		<%= submit_tag 'login', class: 'btn btn-primary' %>
 	<% end %>
-	</br>
-	<h4>Don't Have an Account?    <%= link_to 'Register Here', register_path %></h4>
 </div>
+
+</br>
+<h4>Don't Have an Account?    <%= link_to 'Register Here', register_path %></h4>

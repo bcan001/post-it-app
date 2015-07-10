@@ -1,7 +1,17 @@
 <%= provide(:title, 'Welcome') %>
+
+<% if logged_in? != true %>
+  <h4>Welcome to the Read-This-Board! Please <%= link_to 'register', register_path %> or <%= link_to 'login', login_path %> to post and comment on the site!</h4>
+  </br>
+<% else %>
+  <h4>The latest posts on the Read-This-Board:</h4>
+  </br>
+<% end %>
+
 <div style="text-align:center;">
   <%= render 'shared/content_title', title: 'Post Feed:' %>
 </div>
+
 <% @post.each do |post| %>
   <% if logged_in? == true %>
     <div class='span0 well text-center'> 
@@ -24,4 +34,13 @@
  <% else %>
  <%= render "posts/post", post: post, show_post: true %>
  <% end %>
+
 <% end %>
+
+<div class="pagination">
+  <%= will_paginate @post, renderer: BootstrapPagination::Rails %>
+</div>
+
+
+
+

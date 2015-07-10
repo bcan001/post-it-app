@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'will_paginate', '~> 3.0.6'
+gem 'will_paginate-bootstrap'
+
 gem 'gravatar_image_tag'
 
 gem 'rails', '4.0.0'
