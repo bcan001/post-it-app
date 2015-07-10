@@ -12,6 +12,7 @@
   <%= render 'shared/content_title', title: 'Post Feed:' %>
 </div>
 
+
 <% @post.each do |post| %>
   <% if logged_in? == true %>
     <div class='span0 well text-center'> 
@@ -34,8 +35,8 @@
  <% else %>
  <%= render "posts/post", post: post, show_post: true %>
  <% end %>
-
 <% end %>
+
 
 <div class="pagination">
   <%= will_paginate @post, renderer: BootstrapPagination::Rails %>

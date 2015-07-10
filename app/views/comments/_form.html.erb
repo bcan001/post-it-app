@@ -1,9 +1,10 @@
 <%= form_for([@post, @post.comments.build]) do |f| %>
 		<div id='create_comment'>
+		</br>
 		<ul>
 		<li><p>Add a comment:</p></li>
-    <li><%= f.text_area :body %></li>
-    <li><%= f.submit %></li>
+    <li><%= f.text_area :body, :size => 200 %></li>
+    <li><%= f.submit "Create Comment", class: "btn btn-primary" %></li>
   	</ul>
   </div>
 <% end %>

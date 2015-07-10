@@ -9,6 +9,7 @@ class PostsController < ApplicationController
   	# @post = Post.all.sort_by{|x| x.total_votes}.reverse
     # @post = Post.all
     @post = Post.order("id DESC").paginate(:page => params[:page], :per_page => 8)
+    @users = User.all
 
   end
   def show
@@ -26,7 +27,7 @@ class PostsController < ApplicationController
     @post.creator = current_user #change once we have authentication
 
     if @post.save
-      flash[:notice] = 'your post was created'
+      flash[:notice] = 'Your post was created'
       redirect_to posts_path
     else
       render :new
@@ -40,10 +41,10 @@ class PostsController < ApplicationController
   def update
     #@post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = 'update successful'
+      flash[:notice] = 'Your post was updated successfully'
       redirect_to post_path(@post)
     else
-      flash[:notice] = 'failure to update'
+      flash[:notice] = 'Failure to update your post'
       render :edit
     end
   end

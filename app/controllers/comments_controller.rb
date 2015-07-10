@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
 		@comment.creator = current_user
 
 		if @comment.save
-			flash[:notice] = 'Comment has been created'
+			flash[:notice] = 'Your comment has been created'
 			redirect_to post_path(@post)
 		else
 			render 'posts/show'
@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.html do
         if @vote.valid?
-          flash[:notice] = 'Your vote was counted.'
+          flash[:notice] = 'Your vote was counted'
         else
           flash[:error] = 'Your vote was not counted, you can only vote once on each post'
         end
