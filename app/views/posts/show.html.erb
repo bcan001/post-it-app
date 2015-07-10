@@ -6,6 +6,7 @@
 	<h3><%= @post.title %></h3>
 	<h5><%= @post.url %></h5>
 	<p><%= @post.description %></p>
+	<p>by <%= @post.creator %></p>
 	<% if (logged_in? == true && @post.creator == current_user) %>
 		<table>
 	  	<tr>
