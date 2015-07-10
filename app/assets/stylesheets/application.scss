@@ -58,7 +58,18 @@ div.comment_votes {
   text-align: center;
 }
 
+
 body {
-  background-color: #D0D0D0;
+  background-image: url("/assets/cork2.jpg");
+  background-repeat: repeat-x;
+  background-repeat: repeat-y;
 }
+
+.well {
+  background-image: url("/assets/tack.jpg"),url("/assets/tack.jpg");
+  background-repeat: no-repeat;
+  background-size: 35px;
+  background-position: left top,right top;
+}
+
 
