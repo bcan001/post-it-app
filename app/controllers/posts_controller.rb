@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   def index
   	# @post = Post.all.sort_by{|x| x.total_votes}.reverse
     # @post = Post.all
-    @post = Post.order("id DESC").paginate(:page => params[:page], :per_page => 8)
+    @post = Post.order("id DESC").paginate(:page => params[:page], :per_page => 5)
     @users = User.all
 
   end
