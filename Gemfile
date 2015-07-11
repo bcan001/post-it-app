@@ -4,6 +4,7 @@ ruby '2.2.0'
 
 
 
+
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
 
