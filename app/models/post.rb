@@ -20,7 +20,16 @@ class Post < ActiveRecord::Base
 	#see activerecord callbacks for more info
 
 
-	# sent all methods to .rb file in lib/voteable.rb foler
+
+	if Rails.env.development?
+  	has_attached_file :image, :styles => { :medium => "200x", :thumb => "100x100>" }, :default_url => "default_image1.jpg"
+  else
+	  has_attached_file :image, :styles => { :medium => "200x", :thumb => "100x100>" }, :default_url => "default_image1.jpg",
+									  	:storage => :dropbox,
+									    :dropbox_credentials => Rails.root.join("config/dropbox.yml"),
+									    :path => ":style/:id_:filename"
+	end
+	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
 
 end

@@ -1,6 +1,11 @@
 <div class='row'>
   <div class='span8 well'>
     <%= render post.categories %>
+  
+    </br>
+    <%= image_tag post.image.url(:thumb), style: "float:left;padding-right:15px;padding-top:20px;padding-bottom:20px;padding-left:20px;" %>
+
+
     <h3><%= link_to post.url, fix_url(post.url) %></h3>
     <h4><%= link_to post.title, post_path(post) %></h4>
     <p><%= post.description %></p>

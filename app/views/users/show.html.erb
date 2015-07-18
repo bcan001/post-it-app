@@ -18,19 +18,17 @@
 	<h4>Time Zone: <%= @user.time_zone %></h4>
 	<h4>Number of Posts: <%= @user.posts.count %></h4>
 	<h4>Number of Comments: <%= @user.comments.count %></h4>
-	<h4><%= link_to 'Edit Profile', edit_user_path(current_user) %></h4>
-</div>
 
+	<% if current_user %>
+		<h4><%= link_to 'Edit Profile', edit_user_path(current_user) %></h4>
+	<% end %>
+</div>
 
 <h4><%= @user.username %>'s Website Posts: </h4>
 
 <ul class='nav nav-tabs'>
-	<li class='<%= 'active' if params[:tab].nil? %>' >
-
-	</li>
-	<li class='<%= 'active' if params[:tab]== 'comments' %>' >
-
-	</li>
+	<li class='<%= 'active' if params[:tab].nil? %>' ></li>
+	<li class='<%= 'active' if params[:tab]== 'comments' %>' ></li>
 </ul>
 
 <% if params[:tab].nil? ||  params[:tab] == 'posts'%>
