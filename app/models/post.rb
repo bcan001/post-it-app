@@ -31,5 +31,5 @@ class Post < ActiveRecord::Base
 	end
 	validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
-
+  validates_attachment_presence :image
 end
