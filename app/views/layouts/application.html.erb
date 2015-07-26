@@ -38,8 +38,6 @@
     <% if Rails.env.production? %>
       <%= render :partial => 'layouts/ga' %>
     <%end%>
-    <div class="container" id="footer">
-      <p>@read-this</p>
-    </div>
+    <%= render 'layouts/footer' %>
   </body>
 </html>
