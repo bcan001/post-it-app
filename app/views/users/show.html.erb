@@ -19,7 +19,7 @@
 	<h4>Number of Posts: <%= @user.posts.count %></h4>
 	<h4>Number of Comments: <%= @user.comments.count %></h4>
 
-	<% if current_user %>
+	<% if logged_in? == true && @user.id == current_user.id %>
 		<h4><%= link_to 'Edit Profile', edit_user_path(current_user) %></h4>
 	<% end %>
 </div>
@@ -44,6 +44,13 @@
     <%= link_to vote_post_path(post, vote: false), method: 'post' do %>
       <i class='icon-arrow-down'></i>
     <% end %>
+
+		<% if logged_in? == true && @user.id == current_user.id %>
+    	<br/>
+    	<th><%= link_to 'Edit', edit_post_path(post) %> </th>
+		<% end %>
+
+
   </div>
   <%= render 'posts/post', post: post %>
 	<% end %>
